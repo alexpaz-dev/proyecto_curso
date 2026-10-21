@@ -53,7 +53,7 @@ function TaskItem({ task, onDelete, onEdit, onToggleStatus }: TaskItemProps) {
             >
               {task.title}
             </Typography>
-            <IceScoreBadge muted={isCompleted} score={calculateIce(task)} />
+            <IceScoreBadge score={calculateIce(task)} status={task.status} />
           </Stack>
           <Typography color="text.secondary">{task.description}</Typography>
           <Typography color="text.secondary" variant="body2">

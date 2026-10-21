@@ -32,8 +32,8 @@ Para trabajar en una issue:
 
 `src/` se organiza por tipo de código, en carpetas planas:
 
-- `types/`: tipos de dominio compartidos (`Task`, `NewTask`, `TaskUpdate`, `IceScore`, `IceScoreDraft`). Sin lógica.
-- `utils/`: funciones puras de dominio (cálculo y validación ICE) y sus constantes (`MIN_ICE_VALUE`, `MAX_ICE_VALUE`).
+- `types/`: tipos de dominio compartidos (`Task`, `NewTask`, `TaskUpdate`, `IceScore`, `IceScoreDraft`, `IceLevel`). Sin lógica.
+- `utils/`: funciones puras de dominio (cálculo, validación y nivel ICE) y sus constantes (`MIN_ICE_VALUE`, `MAX_ICE_VALUE`, `HIGH_ICE_THRESHOLD`).
 - `services/`: I/O externo. `aiIceService.ts` llama a Gemini, parsea la respuesta y la valida. Sin estado de React.
 - `hooks/`: estado y lógica de React. `useTaskManager` gestiona el CRUD y la lista ordenada; `useTaskForm`, los valores del formulario, el ICE calculado y la tarea lista para guardar; `useIceSuggestion`, la petición a la IA con `loading`, `error` y `suggestion`.
 - `components/`: UI con MUI. Reciben datos y callbacks por props.
