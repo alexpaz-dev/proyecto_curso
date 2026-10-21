@@ -105,7 +105,7 @@ Para trabajar en una issue:
 - En `IceFields`, un `Slider` sin valor muestra el mínimo y no emite `onChange` si se pulsa justo ahí; por eso también escucha `onChangeCommitted`. No quites ninguno de los dos.
 - La petición a Gemini fija un `responseSchema` con enteros, pero `parseIceScore` vuelve a validar la respuesta: no quites esa validación.
 - Si cambias el prompt de `buildIcePrompt`, mantén `responseSchema` y la validación coherentes con él (mismas claves, enteros de 1 a 10).
-- `npm run check` ejecuta `prettier . --check`, que también revisa este archivo y cualquier Markdown nuevo.
+- `npm run check` ejecuta `prettier . --check`, que también revisa este archivo y cualquier Markdown nuevo. El hook `PostToolUse` de `.claude/settings.json` (`.claude/hooks/formatear.sh`) ya pasa Prettier por cada archivo que creas o editas con `Edit` o `Write`, y si Prettier falla te muestra el motivo. `npm run format` solo hace falta para los archivos creados desde la terminal.
 
 ## Qué no hacer
 
