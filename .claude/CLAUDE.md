@@ -13,6 +13,21 @@ Stack: React + TypeScript estricto + Vite + Material UI (con Emotion). El estado
 - Compilar: `npm run build` (comprueba tipos y genera `dist/`).
 - No hay tests ni runner de tests: no existe `npm test`.
 
+## Flujo de Git
+
+Repo: `alexpaz-dev/proyecto_curso`. Se sigue git flow con dos ramas permanentes:
+
+- `main`: versiones publicadas. Solo recibe PRs desde `dev`.
+- `dev`: integración y rama por defecto en GitHub. Todo el trabajo entra aquí.
+
+Para trabajar en una issue:
+
+1. Parte de `dev` actualizada (`git switch dev && git pull`) y crea una rama `<tipo>/<número>-<descripción-corta>`, como `feat/12-filtro-por-estado` o `fix/15-ice-nulo`.
+2. Haz commits con Conventional Commits (`feat: …`, `fix: …`, `docs: …`). commitlint los valida en el hook `commit-msg` de Husky.
+3. Abre el PR siempre contra `dev` (`gh pr create --base dev`) y pon `Closes #<número>` en la descripción. Como `dev` es la rama por defecto, la issue se cierra al mergear.
+
+`main` y `dev` están protegidas: no admiten push directo, force push ni borrado. Solo se mergea por PR, con todos los hilos de conversación resueltos y sin conflictos con la rama base.
+
 ## Arquitectura
 
 `src/` se organiza por tipo de código, en carpetas planas:
