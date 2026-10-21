@@ -1,0 +1,47 @@
+Quiero que crees un CLAUDE.md nuevo para este proyecto a partir de toda la documentación de arquitectura que ya existe. El objetivo es reunirla en una única fuente de verdad, sin información ni código repetidos.
+
+## 1. Inventario (todavía no modifiques nada)
+Localiza todos los archivos que documentan la arquitectura, las convenciones o la forma de trabajar en el proyecto. Como mínimo, revisa:
+- `CLAUDE.md`, `CLAUDE.local.md`, `.claude/rules/`, `AGENTS.md`, `.cursorrules`, `.cursor/rules/`, `.github/copilot-instructions.md`
+- `README.md` y los demás `.md` de la raíz
+- Carpetas como `docs/`, `doc/`, `architecture/` o `adr/`, y archivos como `ARCHITECTURE.md`, `CONVENTIONS.md` o `CONTRIBUTING.md`
+- Los `CLAUDE.md` y `README.md` que haya dentro de subcarpetas
+Busca también por contenido, no solo por nombre: cualquier documento que describa capas, módulos, patrones, flujos de datos o normas de código.
+
+Después, contrasta esa documentación con el código real: `package.json` (o equivalente) y sus scripts, la estructura de carpetas, la configuración de lint, tests y build, y las dependencias principales. Si un documento contradice el código, vale lo que dice el código; anota la contradicción.
+
+## 2. Plan (espera mi confirmación)
+Antes de escribir o borrar nada, preséntame:
+1. Una tabla con cada archivo encontrado: qué contiene, qué parte pasará al CLAUDE.md y qué harás con él (conservar, recortar o eliminar), con el motivo.
+2. Las duplicidades encontradas (la misma información o el mismo código en varios sitios) y dónde quedará cada cosa.
+3. Las contradicciones entre documentos, o entre documentos y código, y cómo propones resolverlas.
+4. El índice del futuro CLAUDE.md.
+
+## 3. Criterios para el CLAUDE.md
+- Escribe el contenido directamente en el CLAUDE.md. No pongas referencias del tipo «ver docs/x.md» ni importaciones con `@archivo`.
+- Incluye solo lo que Claude necesita en cualquier sesión y no puede deducir rápido leyendo el código:
+  - Qué es el proyecto (2 o 3 líneas) y su stack principal.
+  - Los comandos exactos para instalar, arrancar, pasar los tests, el lint y el build.
+  - La arquitectura: capas o módulos, responsabilidad de cada uno, reglas de dependencia entre ellos y flujo de datos.
+  - Dónde va cada tipo de código nuevo.
+  - Las convenciones que no imponen el linter ni el formateador.
+  - Trampas conocidas, decisiones poco evidentes y lo que no se debe hacer.
+- Deja fuera los listados exhaustivos de archivos, las versiones de dependencias, las explicaciones de cómo funcionan las librerías, los consejos genéricos («escribe código limpio») y lo que ya hacen cumplir las herramientas.
+
+- Cada dato debe aparecer una sola vez. No repitas código: como mucho, un ejemplo breve por patrón, y solo si sin él no se entiende.
+- Usa frases cortas, imperativas y verificables («los componentes van en `src/components/`, uno por archivo»), organizadas con encabezados y listas.
+- Intenta que no pase de unas 200 líneas. Si las reglas de una parte concreta del código lo alargan demasiado, propónme moverlas a `.claude/rules/<tema>.md` con un campo `paths`, para que solo se carguen al trabajar en esa parte.
+
+## 4. Qué hacer con los archivos originales
+- Elimina un documento solo si todo su contenido útil ha pasado al CLAUDE.md (o era obsoleto o contradictorio) y no lo necesita nadie más.
+- No elimines sin preguntarme:
+  - `README.md`: es para personas y puede compartir algunos datos con el CLAUDE.md, como los comandos.
+
+- Licencias, changelogs y ADR, que son el historial de decisiones.
+  - Archivos de otras herramientas (`AGENTS.md`, `.cursorrules`, instrucciones de Copilot): pregúntame primero si se siguen usando.
+- Si conservas un archivo, quítale lo que ahora esté en el CLAUDE.md, salvo en el README.
+- Borra con `git rm` para que se pueda recuperar. No hagas commit: quiero revisar el diff.
+- No toques el código fuente; solo la documentación.
+
+## 5. Al terminar
+Resúmeme en una lista los archivos creados, modificados y eliminados, las contradicciones que has resuelto y las dudas que queden pendientes de mi decisión.
