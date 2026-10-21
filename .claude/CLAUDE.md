@@ -22,7 +22,7 @@ Repo: `alexpaz-dev/proyecto_curso`. Se sigue git flow con dos ramas permanentes:
 
 Para trabajar en una issue:
 
-1. Parte de `dev` actualizada (`git switch dev && git pull`) y crea una rama `<tipo>/<número>-<descripción-corta>`, como `feat/12-filtro-por-estado` o `fix/15-ice-nulo`.
+1. Parte de `dev` actualizada (`git switch dev && git pull`) y crea una rama `issue-<número>-<descripción-corta>`, como `issue-12-filtro-por-estado` o `issue-15-ice-nulo`. El tipo del cambio va en los commits, no en la rama.
 2. Haz commits con Conventional Commits (`feat: …`, `fix: …`, `docs: …`). commitlint los valida en el hook `commit-msg` de Husky.
 3. Abre el PR siempre contra `dev` (`gh pr create --base dev`) y pon `Closes #<número>` en la descripción. Como `dev` es la rama por defecto, la issue se cierra al mergear.
 
